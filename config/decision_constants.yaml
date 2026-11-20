@@ -1,0 +1,15 @@
+# Decision constants of the evaluation, fixed before the test run.
+plan_version: 7
+dev_experiments: [A, C, E, F, G]
+test_experiments: [B, D, H]
+drop_first_s: 30
+warmup_s: 30
+detrend_window_s: 70
+fixed_phi_grid_points: 9
+dynamic_phi_configs: 9
+rl_seeds: 10
+min_for_reduction: 0.05
+chain_speed_noninferiority: 0.98
+llm_phi_interval_s: 5
+rl_fixed_phi_points: 5
+rl_dynamic_configs: 5

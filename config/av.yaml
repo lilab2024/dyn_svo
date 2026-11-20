@@ -1,0 +1,13 @@
+# AV platform shared by every AV controller.
+speed_tracking_tau_s: 1.0     # velocity commands -> acceleration: (v_cmd - v) / tau
+actuation_lag_s: 0.3          # first-order lag from command to actual acceleration
+accel_min: -3.5               # m/s^2, ISO 15622:2018 limit above 20 m/s (stricter than its 5 m/s^2 below 5 m/s)
+accel_max: 2.0                # m/s^2, common ACC acceleration limit
+jerk_max: 2.5                 # m/s^3, ISO 15622:2018 limit above 20 m/s (stricter than its 5 m/s^3 below 5 m/s)
+safety:                       # Gipps (1981) safe speed filter
+  decel_av: 3.5               # m/s^2, assumed own braking capability
+  decel_leader: 3.5           # m/s^2, assumed leader braking
+  reaction_s: 0.5             # s, includes the 0.3 s actuation lag
+  emergency_decel: 6.0        # m/s^2, allowed only when the filter is active (no jerk limit then)
+  s_min: guardrail_g1b        # per-regime minimum gap = G1b threshold of guardrails_v1
+  s_min_buffer_m: 0.05        # m, filter floor = s_min + buffer; smallest 0.05 m multiple with worst margin >= 0 on the filter_check grid

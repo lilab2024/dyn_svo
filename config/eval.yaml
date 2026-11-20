@@ -1,0 +1,4 @@
+# Episode evaluation and dev tuning.
+seeds: 10          # noise seeds per episode, dev and test alike
+n_rear: 8          # rear vehicles observed by the AV (largest K of the dynamic grid)
+tie_tol: 0.001     # log-FOR difference treated as a tie -> simpler configuration wins

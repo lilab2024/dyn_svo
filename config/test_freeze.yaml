@@ -1,0 +1,28 @@
+# Test-freeze run. Committed before any access to the test experiments; it records the frozen
+# development selections and inputs. Implements analysis plan Sections 8-9; no rule is changed here.
+test_experiments: [B, D, H]
+parameter_fold: all_dev                 # test episodes use parameters calibrated on all development experiments
+dev_sources:                            # results/<path>: md5 recorded before the test run
+  eval/eval_dev_v5/summary.json: 319e7fb4d716c818be7543093b3d0307
+  eval/eval_dev_r5_v5/summary.json: 562556a831409f532c9b6fd3ab7a3e63
+  eval/eval_dev_r5_v5_match/match_summary.json: 45d4247808e98568e7d104f957ed930e
+  mpc/phi_thresholds_v1/thresholds.json: 02cca1cc41edd753ca6ad4aa1633d0f1
+  calibration/idm_v1/noise_sd.csv: 91e3ced2c25b96765e6bf8464b807561
+  calibration/idm_v1/params.csv: 8e4931fc00a0fe57e36fc9a375d5c590
+  metrics/guardrails_v1/thresholds.json: 07cf3ce3e1ac0f1abbef6fd1c7fd13c5
+  mpc/human_policy_v1/policy.json: ae2d3def35b5b3fc2b1004d7fd8f6311
+variants:
+  primary:                              # preregistered environment; no dynamic selection
+    selection_source: eval/eval_dev_v5/summary.json
+    best_fixed: fixed_0
+    dynamic: null
+    matched: null
+    configs: [hdv, fixed_0, fs, pi]     # fs, pi: descriptive (RQ3/H3)
+  r5:                                   # exploratory sensitivity analysis
+    selection_source: eval/eval_dev_r5_v5/summary.json
+    best_fixed: fixed_7
+    dynamic: dyn_W40_lo4_hi7p5
+    matched:
+      source: eval/eval_dev_r5_v5_match/match_summary.json
+      phi: 1.0954
+    configs: [hdv, fixed_7, dyn_W40_lo4_hi7p5, fixed_match, fs, pi]

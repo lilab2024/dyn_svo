@@ -1,0 +1,37 @@
+# Result files read by scripts/paper_macros.py and scripts/paper_figures.py.
+# results/<path> with the md5 recorded; the scripts refuse files with another md5.
+test_commit: 43eacc11de32481ab15d075ab345790eac9c042d
+test_summaries:
+  primary:
+    path: eval/eval_test_v5/summary.json
+    md5: 7864b5220cdf86c68f2ea755972023b3
+  r5:
+    path: eval/eval_test_r5_v5/summary.json
+    md5: 6113a105b67e0005aa5aa3180ce44a78
+theory:                                 # v2 is added in a second commit after its run
+  v1:
+    path: theory/theory_v1/theory.json
+    md5: 68865cd1c8b5a47bc1d0ab797223fcba
+  v2:
+    path: theory/theory_v2/theory.json
+    md5: 9dfedb2672714e1470c496416db3fd07
+validation:
+  chainval:
+    path: validation/chainval_v2/summary.json
+    md5: d04532bbb54622b94fdad121f1401472
+dev_mpc:                                # MPC development summaries for Section 6 (exploratory)
+  primary_v2b:
+    path: eval/eval_dev_v2b/summary.json
+    md5: 40151858f951551e93bc5bca3493adac
+  r5_v1:
+    path: eval/eval_dev_r5_v1/summary.json
+    md5: e10ed8062582a28595f1809b4a05965b
+  primary_v5:
+    path: eval/eval_dev_v5/summary.json
+    md5: 319e7fb4d716c818be7543093b3d0307
+  r5_v5:
+    path: eval/eval_dev_r5_v5/summary.json
+    md5: 562556a831409f532c9b6fd3ab7a3e63
+  match:
+    path: eval/eval_dev_r5_v5_match/match_summary.json
+    md5: 45d4247808e98568e7d104f957ed930e

@@ -1,0 +1,6 @@
+# MPC shared settings. Not tuned; the arms differ only in phi.
+horizon_s: 10.0                 # prediction horizon
+block_s: 0.5                    # move blocking: acceleration constant within each block (20 moves)
+leader_prediction: constant_speed
+human_policy_run: human_policy_v1   # desired gap line and cost scales from dev human data
+fixed_phi_grid_points: 9        # 0 .. pi/2 in steps of pi/16

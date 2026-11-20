@@ -1,0 +1,13 @@
+# State-dependent cooperation weight phi_t = arctan(Gamma_t).
+wave_band_s: [20.0, 64.0]   # dominant periods of the dev experiments; g_j = max |G_j| over this band
+n_periods: 45               # log-spaced periods in the band
+human_params: pooled        # the AV's model of humans: pooled IDM of the fold and regime (not per driver)
+phi_rate_max: 0.1           # rad/s, fixed, not tuned
+grid:                       # dynamic-arm tuning grid, 3 x 3 = 9 configurations
+  K: [2, 4, 8]              # rear vehicles observed (V2V)
+  tau_f_s: [2.0, 5.0, 10.0] # low-pass time constant of Gamma_t
+leader_activity:            # v5 dynamic phi_t; the keys above are kept for traceability
+  thresholds_run: phi_thresholds_v1   # results/mpc/<run>/thresholds.json, from scripts/phi_thresholds.py
+  percentiles: [10, 90]     # a_lo, a_hi over the fold's training experiments, per regime and window
+  window_s: [10.0, 20.0, 40.0]
+  phi_ranges_pi16: [[3.0, 7.0], [4.0, 7.5], [5.0, 8.0]]   # (phi_lo, phi_hi) in units of pi/16

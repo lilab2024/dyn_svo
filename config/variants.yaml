@@ -1,0 +1,5 @@
+# Analysis variants. primary = preregistered environment, unchanged.
+# Every other variant is a post hoc sensitivity analysis and is reported as exploratory.
+primary: {}
+r5:                        # replayed leader made non-receding (leader rollback in the data)
+  leader_monotone: true

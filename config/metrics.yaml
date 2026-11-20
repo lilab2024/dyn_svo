@@ -1,0 +1,13 @@
+# Metric settings.
+detrend_window_s: 70               # W: centred moving average, window shrinks at the series ends
+detrend_sensitivity_s: [35, 140]   # exploratory: W/2 and 2W
+warmup_s: 30                       # excluded from all metrics
+guardrail_run: guardrails_v1        # thresholds from dev human data
+guardrail_percentiles: {min_gap: 1, speed_ratio: 1, mean_gap: 99}
+guardrail_fail_rate_max: 0.01      # G1b, G2, G3; collisions (G1a) have zero tolerance
+spectrum:                          # how W was derived from dev real data
+  segment_s: 120
+  overlap: 0.5
+  nfft_factor: 8
+  period_range_s: [10, 120]
+  rule: "max dominant period over dev experiments without an edge peak, ceil to 10 s, clamp 30-120"

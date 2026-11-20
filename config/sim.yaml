@@ -1,0 +1,6 @@
+# Simulation settings shared by calibration, simulator and controllers.
+dt: 0.1                 # s; 3 data frames at 30 Hz
+data_hz: 30
+idm_delta: 4.0          # IDM free-road exponent (fixed, standard value)
+accel_floor: -9.0       # m/s^2, physical deceleration limit applied to every model output
+min_gap_eps: 0.001      # m, floor used inside the IDM interaction term

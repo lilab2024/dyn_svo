@@ -1,0 +1,24 @@
+# RL-MLP protocol (analysis plan v6). Transcribed from the plan before any RL code; the RL code reads it.
+algorithm: ppo                       # Stable-Baselines3 PPO, PyTorch CPU, pinned versions
+net_arch: [64, 64]                   # separate policy and value networks, not tuned
+activation: tanh
+fixed_phi_pi16: [0, 2, 4, 6, 8]      # even subset of the 9-point MPC grid
+dynamic_configs:                     # cross around W_a = 20 s, (4, 7.5) pi/16
+  - {window_s: 10.0, phi_lo_pi16: 4.0, phi_hi_pi16: 7.5}
+  - {window_s: 20.0, phi_lo_pi16: 4.0, phi_hi_pi16: 7.5}
+  - {window_s: 40.0, phi_lo_pi16: 4.0, phi_hi_pi16: 7.5}
+  - {window_s: 20.0, phi_lo_pi16: 3.0, phi_hi_pi16: 7.0}
+  - {window_s: 20.0, phi_lo_pi16: 5.0, phi_hi_pi16: 8.0}
+training_seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+noise_seed_offset: 1000000           # training noise streams disjoint from evaluation seeds 0-9
+train_window_s: [60.0, 180.0]        # uniform window length
+training_steps: 1000000              # fixed from the debug_rl_timing pilot; same for every configuration
+selected_hp: {learning_rate: 3.0e-4, gamma: 0.98}   # chosen by rl_tune_v2 and the learnability gate;
+action_map: centred                  # (plan v7): [-1, 0] -> [-3.5, 0], [0, 1] -> [0, 2]; replaces the linear map
+normalize: reward                    # (plan v7): reward scaled by the running sd of the discounted return, no shift, no clipping
+tuning:                              # once, MLP, fixed phi = pi/4
+  phi_pi16: 4
+  learning_rate: [1.0e-4, 3.0e-4]
+  gamma: [0.98, 0.99, 0.995]
+  seeds: 3
+  criterion: out_of_fold_return

@@ -1,0 +1,15 @@
+# Classical baselines reproduced from Stern et al. (2018), Sec. 3.1-3.2. Not tuned.
+mean_speed_window_s: 38            # about one lap (Stern 2018); shared mean-speed estimator, not tuned
+follower_stopper:
+  dx0: [4.5, 5.25, 6.0]            # m, region intercepts
+  d: [1.5, 1.0, 0.5]               # m/s^2, region curvatures
+  U_source: leader_mean            # causal mean of the leader's speed over the window
+pi_saturation:
+  g_l: 7.0                         # m
+  g_u: 30.0                        # m
+  v_catch: 1.0                     # m/s
+  gamma: 2.0                       # m
+  dxs_time_s: 2.0                  # safety distance max(2 s * dv, 4 m), dv = v_lead - v_AV, as published
+  dxs_min: 4.0                     # m
+  update_hz: 30                    # internal update rate (3 updates per 0.1 s step, inputs held)
+  U_source: own_mean               # causal mean of the AV's own speed over the window (as published)

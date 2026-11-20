@@ -1,0 +1,10 @@
+# Theory packages: cvxpy and its dependencies for the LMI certificates; versions from a pip dry run (Windows, Python 3.13, PyPI binary wheels); highspy pinned older (1.16.0 was one day old).
+# Install with --only-binary=:all: and constraints that keep the pins of requirements.txt and config/requirements_rl.txt unchanged.
+cvxpy==1.9.3
+sparsediffpy==0.6.1
+clarabel==0.11.1
+highspy==1.15.1
+osqp==1.1.3
+qdldl==0.1.9.post1
+scs==3.3.1
+joblib==1.6.0
